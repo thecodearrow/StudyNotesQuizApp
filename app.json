@@ -1,0 +1,12 @@
+{
+  "name": "StudyNotesQuizApp",
+  "displayName": "StudyNotesQuizApp",
+  "expo": {
+    "name": "StudyNotesQuizApp",
+    "slug": "StudyNotesQuizApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
