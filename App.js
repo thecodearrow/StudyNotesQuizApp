@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { ApplicationProvider, Layout } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
+import UploadDoc from './UploadDoc';
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Let's plan the landing page UI and get started! :)</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <UploadDoc />
+      </Layout>
+    </ApplicationProvider>
   );
 }
 
