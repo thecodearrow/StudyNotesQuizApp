@@ -9,7 +9,12 @@
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
+    "@expo/webpack-config": "^0.12.63",
+    "@react-native-async-storage/async-storage": "^1.14.1",
+    "@react-navigation/bottom-tabs": "^5.11.8",
+    "@react-navigation/native": "^5.9.3",
     "@ui-kitten/components": "^5.0.0",
+    "babel-preset-es2015": "^6.24.1",
     "expo": "~40.0.0",
     "expo-document-picker": "~8.4.1",
     "expo-splash-screen": "~0.8.0",
@@ -22,8 +27,14 @@
     "react-native-reanimated": "~1.13.0",
     "react-native-screens": "~2.15.0",
     "react-native-svg": "12.1.0",
+    "react-native-tiny-toast": "^1.0.7",
     "react-native-unimodules": "~0.12.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "react-redux": "^7.2.3",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-persist-expo-filesystem": "^2.0.0",
+    "spacy-js": "^0.0.5"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

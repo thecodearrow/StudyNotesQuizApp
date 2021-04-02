@@ -1,19 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
-import UploadDoc from './UploadDoc';
-
+import BottomTabs from "./BottomTabs";
 
 
 export default function App() {
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <UploadDoc />
-      </Layout>
-    </ApplicationProvider>
+    <Provider store={store}>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <BottomTabs />
+      </ApplicationProvider>
+    </Provider>
+
   );
 }
 
