@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation, BottomNavigationTab, Layout, Text } from '@ui-kitten/components';
 import CopyPasteTextBox from './CopyPasteTextBox';
 import UploadTextFile from './UploadTextFile';
+import QuizQuestions from "./QuizQuestions";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ const UploadTxtScreen = () => (
 );
 const QuizScreen = () => (
     <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1'>QUIZ</Text>
+        <QuizQuestions />
     </Layout>
 );
 

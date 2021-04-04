@@ -1,7 +1,6 @@
 const initialState = {
     questions: [],
     uploadedFile: {},
-    copyPasteTextBoxContent: ""
 
 };
 
@@ -26,15 +25,7 @@ export default function appReducer(state = initialState, action) {
 
             }
         }
-        case 'CHANGE_TEXT_BOX': {
 
-            return {
-                // that has all the existing state data
-                ...state,
-                copyPasteTextBoxContent: action.textContent
-
-            }
-        }
         default:
             // If this reducer doesn't recognize the action type, or doesn't
             // care about this specific action, return the existing state unchanged
