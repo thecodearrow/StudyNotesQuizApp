@@ -30,15 +30,13 @@ const BottomTabBar = ({ navigation, state }) => (
         selectedIndex={state.index}
         onSelect={index => navigation.navigate(state.routeNames[index])}>
         <BottomNavigationTab title='PASTE TEXT' />
-        <BottomNavigationTab title='UPLOAD TEXT' />
-        <BottomNavigationTab title='TAKE QUIZ' />
+        <BottomNavigationTab title='QUESTIONS' />
     </BottomNavigation>
 );
 
 const TabNavigator = () => (
     <Navigator tabBar={props => <BottomTabBar {...props} />}>
         <Screen name='CopyPaste' component={CopyPasteScreen} />
-        <Screen name='UploadText' component={UploadTxtScreen} />
         <Screen name='Quiz' component={QuizScreen} />
     </Navigator>
 );

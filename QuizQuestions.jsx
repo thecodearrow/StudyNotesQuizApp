@@ -11,7 +11,8 @@ class QuizQuestions extends Component {
         let id = 0;
         let questionElements = questions.map((q) => {
             id += 1;
-            return <Text key={id} style={styles.questionText}>{id}) {q.question}</Text>
+            return <Text key={id} style={styles.questionText}>{id}) {q.question} {"\n"} </Text>
+
         }
 
         );
@@ -19,6 +20,7 @@ class QuizQuestions extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
+                    <Text category='h5'>QUESTIONS:</Text>
                     {questionElements}
                 </ScrollView>
             </SafeAreaView>

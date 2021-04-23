@@ -1,9 +1,16 @@
 {
-  "name": "StudyNotesQuizApp",
-  "displayName": "StudyNotesQuizApp",
+  "name": "BallOfQuestions",
+  "displayName": "BallOfQuestions",
+  "orientation": "portrait",
+  "icon": "./assets/app_icon.png",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#000000"
+  },
   "expo": {
-    "name": "StudyNotesQuizApp",
-    "slug": "StudyNotesQuizApp",
+    "name": "BallOfQuestions",
+    "slug": "BallOfQuestions",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

@@ -22,7 +22,7 @@ class CopyPasteTextBox extends Component {
 
 
     }
-    getMCQQuestion(sentence, answer) {
+    getQuestion(sentence, answer) {
         if (sentence.length == 0) {
             //blank 
             return;
@@ -63,46 +63,11 @@ class CopyPasteTextBox extends Component {
 
     }
     async getNERAndFormQuestion(sentence) {
-        // MCQs, Fill in the Blanks and General Questions 
-        //find out the NER and frame questions and add it to allQuizQuestions 
-        //HuggingFace iarfmoose/t5-base-question-generator Model
-        //Add Key to Expo Config
-
-        //let huggingFaceApiKey = "Bearer api_CFeIvObMXROvMWGwGWVecWnAtQCTlObUVC"; //COMMENT IT OUT BEFORE PUSHING! 
-
-        try {
-            const url = "https://api-inference.huggingface.co/models/iarfmoose/t5-base-question-generator";
-            const config = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': huggingFaceApiKey
-                },
-                body: JSON.stringify({ "inputs": sentence })
-            }
-            const response = await fetch(url, config);
-            const json = await response.json();
-            if (response.ok) {
-                let question = json[0]["generated_text"];
-                if (question.includes("?")) {
-                    //to filter out better questions and  which has ? in the generated output
-                    question = question.split('?')[0] + "?";
-                    console.log(question);
-                    let id = this.state.allQuizQuestions.length;
-                    let current_question = { "id": id, "type": "general", "text": sentence, "question": question };
-                    this.setState({ allQuizQuestions: [...this.state.allQuizQuestions, current_question] });
-                }
-
-            }
-
-
-        } catch (error) {
-            //
-            console.log(error);
-        }
+        //find out the POS and frame questions and add it to allQuizQuestions
+        const spacy = require('spacy-js');
+        const nlp = spacy.load('en_core_web_sm');
+        const doc = await nlp(sentence);
         const ner_filters = ["NOUN", "PROPN", "ORG", "PERS"]; //TODO Filter out only certain named entities
-        /*
         if (doc.ents.length > 0) {
             let r = Math.floor(Math.random() * doc.ents.length); //random entity is picked!
             let current_question = this.getQuestion(sentence, doc.ents[r].text); //get a question for a random entity!
@@ -111,7 +76,7 @@ class CopyPasteTextBox extends Component {
             //console.log("printing state", this.state)
         }
 
-        */
+
 
     }
 
@@ -120,11 +85,6 @@ class CopyPasteTextBox extends Component {
         //flush out all the existing questions 
         this.setState({ "allQuizQuestions": [] });
         let content = this.state.copyPasteContent;
-        if (content.length > 10000) {
-            //more than 10k chars
-            Toast.show('Pasted text is too huge to be processed. ');
-            return;
-        }
         //console.log(content);
         let sentences = content.split(".");
         for (var sentence of sentences) {
@@ -145,7 +105,7 @@ class CopyPasteTextBox extends Component {
 
 
                 <Input
-                    label={evaProps => <Text {...evaProps}>Paste Study Notes</Text>}
+                    label={evaProps => <Text {...evaProps}>Paste Text</Text>}
                     value={this.state.copyPasteContent}
                     multiline={true}
                     textStyle={styles.input}
