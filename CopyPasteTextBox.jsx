@@ -68,7 +68,7 @@ class CopyPasteTextBox extends Component {
         //HuggingFace iarfmoose/t5-base-question-generator Model
         //Add Key to Expo Config
 
-        //let huggingFaceApiKey = "Bearer api_CFeIvObMXROvMWGwGWVecWnAtQCTlObUVC"; //COMMENT IT OUT BEFORE PUSHING! 
+        
 
         try {
             const url = "https://api-inference.huggingface.co/models/iarfmoose/t5-base-question-generator";
@@ -88,7 +88,7 @@ class CopyPasteTextBox extends Component {
                 if (question.includes("?")) {
                     //to filter out better questions and  which has ? in the generated output
                     question = question.split('?')[0] + "?";
-                    console.log(question);
+                    //console.log(question);
                     let id = this.state.allQuizQuestions.length;
                     let current_question = { "id": id, "type": "general", "text": sentence, "question": question };
                     this.setState({ allQuizQuestions: [...this.state.allQuizQuestions, current_question] });
@@ -99,6 +99,7 @@ class CopyPasteTextBox extends Component {
 
         } catch (error) {
             //
+            Toast.show(error);
             console.log(error);
         }
         const ner_filters = ["NOUN", "PROPN", "ORG", "PERS"]; //TODO Filter out only certain named entities
@@ -117,6 +118,8 @@ class CopyPasteTextBox extends Component {
 
     async generateQuiz() {
 
+        //Show Toast
+        Toast.show('Processing text...');
         //flush out all the existing questions 
         this.setState({ "allQuizQuestions": [] });
         let content = this.state.copyPasteContent;
@@ -138,6 +141,9 @@ class CopyPasteTextBox extends Component {
         }
 
     }
+    clearClipBoard() {
+        this.setState({ copyPasteContent: "" });
+    }
 
     render() {
         return (
@@ -152,9 +158,12 @@ class CopyPasteTextBox extends Component {
                     placeholder='Copy-paste your study notes here...'
                     onChangeText={nextValue => this.handleTextChange(nextValue)}
                 />
-                <Button onPress={() => this.generateQuiz()}>
+                <Button style={styles.generateButton} onPress={() => this.generateQuiz()}>
                     GENERATE QUIZ
-      </Button>
+                </Button>
+                <Button style={styles.clearTextButton} onPress={() => this.clearClipBoard()} appearance='outline' status='info' size='small'>
+                    CLEAR TEXT
+                </Button>
 
 
             </View>
@@ -171,6 +180,12 @@ const styles = StyleSheet.create({
         maxHeight: 400
 
     },
+    generateButton: {
+        margin: 10
+    },
+    clearTextButton: {
+        margin: 20,
+    }
 });
 
 

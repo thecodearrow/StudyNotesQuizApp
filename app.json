@@ -1,17 +1,20 @@
 {
-  "name": "BallOfQuestions",
-  "displayName": "BallOfQuestions",
-  "orientation": "portrait",
-  "icon": "./assets/app_icon.png",
-  "splash": {
-    "image": "./assets/splash.png",
-    "resizeMode": "contain",
-    "backgroundColor": "#000000"
-  },
   "expo": {
-    "name": "BallOfQuestions",
+    "name": "Ball Of Questions",
+    "icon": "./assets/app_icon.png",
+    "orientation": "portrait",
+    "version": "1.0.2",
     "slug": "BallOfQuestions",
-    "version": "1.0.0",
+    "android": {
+      "package": "com.ballofwisdom.ballofquestions",
+      "versionCode": 3,
+      "googleServicesFile": "./config/google-services.json",
+      "permissions": []
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
